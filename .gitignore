@@ -1,0 +1,10 @@
+*.pyc
+.*swp
+*.sqlite3
+keys.py
+.DS_Store
+.Trashes
+._*
+.Spotlight-V100
+Thumbs.db
+user_res/

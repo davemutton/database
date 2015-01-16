@@ -1,0 +1,71 @@
+from django.core.management.base import BaseCommand
+from property.models import Property
+import csv
+
+class Command(BaseCommand):
+	help ='populate the Property Model with data'
+	
+
+
+
+
+	def handle(self,*args, **options):
+		with open ('data.csv','rb') as csvfile:
+			reader = csv.reader(csvfile)
+			data=[]
+			for row in reader:
+				data.append(row)
+			headers=data[0]
+			data = data[1:-1]
+			print headers
+		row_number=0
+		final_data={}
+		for row in data:
+			index = 0
+			final_data[row_number]=[]
+			for cell in row:
+				final_data[row_number].append(headers[index] + "=" + cell)
+				index = index + 1
+				row_number= row_number + 1
+		print final_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+ propertyUID = models.AutoField(primary_key=True)
+   client = models.ManyToManyField(Client,blank=True)
+   street_address = models.CharField(max_length=255, db_index=True)
+   suburb = models.CharField(max_length=120, db_index=True)
+   state = models.CharField(max_length=3, db_index=True)
+   postcode = models.IntegerField(max_length=4, db_index=True)
+   date_added = models.DateTimeField(editable=False,auto_now=True)
+	baths = models.IntegerField(max_length=2,default=0)
+	cars = models.IntegerField(max_length=2,default=0)
+	beds = models.IntegerField(max_length=2,default=0)
+
+'''
+
+'''
+api_key = "0df4a4bd-fd97-4b88-8a44-169659d70b55"
+baseurl = 'https://auspost.com.au/api/postcode/search.json?q='
+state="SA"
+suburb="Trinity Gardens"
+url = baseurl +suburb+"&state="+state
+headers = {"AUTH-KEY": '0df4a4bd-fd97-4b88-8a44-169659d70b55'}
+
+r = requests.get(url,headers=headers)
+dict = json.loads(r.content)
+print dict['localities']['locality']["postcode"]
+'''

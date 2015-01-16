@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Properties in database</title>
+    </head>
+
+    <body>
+        <h1>Properties arranged by postcode</h1>
+
+        {% if properties %}
+            <table>
+                {% for property in properties %}
+                <tr>
+                <td>{{ property.street_address }}</td>
+                <td>{{ property.suburb }}</td>
+                <td>{{ property.state }}</td>
+                <td>{{ property.postcode }}</td>
+                <td><img src="/user_res/{{ property.imagefile}}" width="200px"></td>
+                </tr>
+
+                {% endfor %}
+            
+            </table>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+
+    </body>
+</html>

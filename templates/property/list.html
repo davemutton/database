@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Properties in database</title>
+    </head>
+
+    <body>
+        <h1>Properties listed by postcode</h1>
+
+    {% for property in propertys %}
+    {# Each "property" is a property model object. #}
+    {{ property.street_address|upper }}<br />
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if propertys.has_previous %}
+            <a href="?page={{ propertys.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ propertys.number }} of {{ propertys.paginator.num_pages }}.
+        </span>
+
+        {% if propertys.has_next %}
+            <a href="?page={{ propertys.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+    </body>
+</html>

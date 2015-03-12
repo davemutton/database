@@ -1,0 +1,35 @@
+{% extends 'property/base.html' %}
+{% load staticfiles %}
+   {% block extra-css %}{% endblock %}
+{% block title %}A list of all queries{% endblock %}
+{% block body_block %}
+        <h1>All query jobs</h1>
+
+            <table>
+    {% for property in properties %}
+
+                <tr>
+                <td><img src="/user_res/{{ property.imagefile}}" width="200px"></td>
+                <td>  <a href="{% url "property-edit" pk=property.propertyUID %}" class="btn">edit</a></td>
+                <td>{{ property.street_address }}</td>
+                <td>{{ property.suburb }}</td>
+                <td>{{ property.state }}</td>
+                <td>{{ property.postcode }}</td>
+
+                </tr>
+
+                {% endfor %}
+            
+            </table>
+
+              <a class="btn btn-success" href="download/">download images<a>
+                            <h2>Images could not be found for the following</h2>
+             <table>
+ {% for failed_property in failed %}
+<tr>
+<td>{{failed_property.street_address}} {{failed_property.suburb}}</td>
+<tr>
+   {% endfor %}
+
+
+     {% endblock %}

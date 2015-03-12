@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add property page</title>
-    </head>
+{% extends 'property/base.html' %}
+{% block title %}Add property page{% endblock %}
 
-    <body>
+{% block body_block %}
        <h1>Add property</h1>
 
 <form action="{% url "property-new" %}" method="POST">
@@ -16,5 +13,4 @@
 </form>
 
 <a href="{% url "index" %}">back to list</a>
-    </body>
-</html>
+     {% endblock %}

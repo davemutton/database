@@ -1,0 +1,32 @@
+{% extends 'property/base.html' %}
+{% load staticfiles %}
+   {% block extra-css %}{% endblock %}
+{% block title %}A list of all queries{% endblock %}
+{% block body_block %}
+        <h1>All query jobs</h1>
+<ul>
+    {% for queryjob in queries %}
+
+<li><a href="{{ queryjob.queryUID  }}">{{ queryjob }}</a></li>
+
+{% endfor %}
+</ul>
+   </div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if queryjob.has_previous %}
+            <a href="?page={{ queryjob.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ queryjob.number }} of {{ queryjob.paginator.num_pages }}.
+        </span>
+
+        {% if queryjob.has_next %}
+            <a href="?page={{ queryjob.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+     {% endblock %}

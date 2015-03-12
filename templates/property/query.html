@@ -1,0 +1,65 @@
+{% extends 'property/base.html' %}
+{% load staticfiles %}
+{% block title %}Add property page{% endblock %}
+
+{% block extra-css %}    
+<script src="{% static 'js/papaparse.min.js' %}"></script> 
+<script src="{% static 'js/dave/query.js' %}"></script> 
+<link href="{% static 'css/dave/query.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body_block %}
+       <h1>Create Query</h1>
+       <p>Upload a csv file with street address, postcode, state and suburb. It must contain headers</p>
+       </p>
+<div class="container">	
+	<input type="file" id="csv-file" name="files"/>
+
+<div class ="btn btn-success" id="process-file">Process file</div>
+<br />
+<div id="key_select" >
+	<ul>
+
+<li>Which column contains the Street address?
+<select id='street_address' class='select_column'>
+<option>None</option>
+</select>
+	<li>Which column contains the Suburb?
+<select id='suburb' class='select_column'>
+	<option>None</option>
+	</select>
+	<li>Which column contains the State?
+<select id='state' class='select_column'>
+	<option>None</option>
+	</select>
+	<li>Which column contains the Postcode?
+<select id='postcode' class='select_column'>
+	<option>None</option>
+</select>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="" method="post">
+    	<div class="hidden">
+
+    {% csrf_token %}
+       {{ form.as_ul }}
+
+</div>
+
+    <input type="submit" value="Submit" />
+</form>
+
+     {% endblock %}
